@@ -35,7 +35,9 @@ in this picture:
 It will prompt you for the first phrase. Record a wav file and save it into this
 same directory. The name doesn't matter except that it must end ".wav". The script
 will notice it, rename it to the file named in metadata.csv and then continue to the
-next phrase. 
+next phrase. Piper seems to want 48000 samples/second one-channel 16 bit signed integer .wav format
+files, but I have not seen any documenation to that effect. But its what piper-recording-studio
+creates.
 
 I used my station microphone to record.
 
