@@ -3,6 +3,8 @@ use strict;
 use warnings;
 
 #rotate through phonetics for A-Z and 0-9 in 4 word combinations
+# print computed phonetics to STDOUT in a format suitable to
+# copy/paste into metadata.csv for piper voice model training.
 #
 
 my $ltr1 = 0;

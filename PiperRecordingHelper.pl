@@ -1,16 +1,18 @@
 #!/usr/bin/perl
+# Copyright (c) 2026 By Wayne Wright, W5XD. See LICENSE for copying permissions.
 # perl script to help automate recording .wav files for sending to piper training.
 # Its input is
-# a) <baseDir> command line argument is directory where metadata.csv exists
-# b) and where wav folder exits
-# c) metadata.csv  Formatted as required by piper with | delimiter.
-# d) already recorded .wav files as named by first column in metadata.csv
+# a) <baseDir> required command line argument is directory where metadata.csv exists
+# b) metadata.csv  in <baseDir>. Formatted as required by piper with | delimiter.
+# c) folder named "wav" in <baseDir> containing any already recorded .wav files as named 
+#    by first column in metadata.csv
 #
 # For recording .wav files:
 # This script displays the Phrase from the csv and waits for any .wav file to
 # appear in <baseDir> directory. This script renames such a file to what the csv
-# called for and goes on to the next phrase. "generate" is allowed as file name,
-# in which case this script computes a name for the file.
+# called for and goes on to the next phrase. 
+#    generate
+# is allowed as file name, in which case this script computes a name for the file.
 #
 # This script does nothing to record the wav file. It simply waits for a file to
 # appear in the directory. I use http://audacityteam.org.
@@ -25,6 +27,21 @@
 # Type a 'D' after a "review" of an existing file deletes it and prompts to re-record it.
 # Type an 'S' when prompted for a recording and the phrase is skipped and not written
 # to the metadata-new.csv file.
+#
+# Optional command line arguments
+# --review      plays each existing file named in metadata.csv and waits confirmation 
+#               to continue. Note that Windows moves the keyboard focus to the playback
+#               application, so you have first click on perl's console window, then
+#               press the apprpriate keyboard
+# --scan        Don't do any recordings. Scan the metadata.csv and print a message
+#               summarizing what wav files already exist, and whether any extra ones
+#               are present.
+# --no-dupes    Silently skip any metadata.csv entries that are the same phrase
+#               as any earlier entry.
+# --baseWavName
+#               Override this script's default for "generated" wav file names.
+#               The default is "ham_wavs/ph_". This script appends a 3 digit 
+#               decimal number and .wav.               
 #
 use strict;
 use warnings;
